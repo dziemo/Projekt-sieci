@@ -73,17 +73,18 @@ int main (void) {
   struct sockaddr_in adr, nadawca;
   socklen_t dl = sizeof(struct sockaddr_in);
 
-  iloscBiletow = 6;
-
+  size_t len = sizeof(miasta) / sizeof(miasta[0]);
+  printf("%lu\n", len);
+ 
   FILE *f = fopen("bilety.txt", "w");
   if (f == NULL) {
     printf("%s\n", "Nieotwarto pliku");
     exit(1);
   }
   for (int i = 0; i < iloscBiletow; i++) {
-    fprintf(f, "%s\n", miasta[rand()%iloscBiletow]);
+    fprintf(f, "%s\n", miasta[rand()%len]);
     fprintf(f, "%s\n", "#");
-    fprintf(f, "%s\n", miasta[rand()%iloscBiletow]);
+    fprintf(f, "%s\n", miasta[rand()%len]);
     fprintf(f, "%s\n", "#");
     fprintf(f, "%u.%u.%u %u:%u\n", rand()%30,rand()%12,2018,rand()%24,rand()%59);
     fprintf(f, "%s\n", "#");
