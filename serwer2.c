@@ -75,7 +75,7 @@ int main (void) {
 
   size_t len = sizeof(miasta) / sizeof(miasta[0]);
   printf("%lu\n", len);
- 
+  iloscBiletow =10;
   FILE *f = fopen("bilety.txt", "w");
   if (f == NULL) {
     printf("%s\n", "Nieotwarto pliku");
