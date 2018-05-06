@@ -6,14 +6,19 @@
         xmlns:local="clr-namespace:Client"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <Label Content="IP" HorizontalAlignment="Left" Height="35" Margin="35,10,0,0" VerticalAlignment="Top" Width="143"/>
-        <Label Content="Port" HorizontalAlignment="Left" Height="35" Margin="192,10,0,0" VerticalAlignment="Top" Width="163"/>
-        <TextBox x:Name="adresIP" HorizontalAlignment="Left" Height="27" Margin="35,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143" Text="192.168.0.102"/>
-        <TextBox x:Name="port" HorizontalAlignment="Left" Height="27" Margin="192,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="163" Text="1025"/>
-        <Button Content="Polacz" HorizontalAlignment="Left" Height="37" Margin="35,110,0,0" VerticalAlignment="Top" Width="143" Click="Button_Click"/>
-        <Label x:Name="Status" Content="Offline" HorizontalAlignment="Left" Height="37" Margin="192,110,0,0" VerticalAlignment="Top" Width="163" Foreground="Red"/>
-        <Label x:Name="Wiadomosc" Content="Label" HorizontalAlignment="Left" Height="41" Margin="35,172,0,0" VerticalAlignment="Top" Width="320"/>
-
+    <Grid x:Name="mainGrid">
+        <Grid x:Name="connectionGrid">
+            <Label Content="IP" HorizontalAlignment="Left" Height="35" Margin="35,10,0,0" VerticalAlignment="Top" Width="143"/>
+            <Label Content="Port" HorizontalAlignment="Left" Height="35" Margin="192,10,0,0" VerticalAlignment="Top" Width="163"/>
+            <TextBox x:Name="adresIP" HorizontalAlignment="Left" Height="27" Margin="35,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143" Text="192.168.0.102" TextChanged="adresIP_TextChanged"/>
+            <TextBox x:Name="port" HorizontalAlignment="Left" Height="27" Margin="192,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="163" Text="1025"/>
+            <Button Content="Polacz" HorizontalAlignment="Left" Height="37" Margin="35,110,0,0" VerticalAlignment="Top" Width="143" Click="Button_Click"/>
+            <Label x:Name="Status" Content="Offline" HorizontalAlignment="Left" Height="37" Margin="192,110,0,0" VerticalAlignment="Top" Width="163" Foreground="Red"/>
+            <Label x:Name="Wiadomosc" Content="Label" HorizontalAlignment="Left" Height="41" Margin="35,172,0,0" VerticalAlignment="Top" Width="320"/>
+            <TextBox x:Name="Text" HorizontalAlignment="Left" Height="23" Margin="360,110,0,0" TextWrapping="Wrap" Text="napiszcos" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
+        </Grid>
+        <Grid x:Name="biletyGrid">
+            <Label x:Name="Bilet1" Content="Label" HorizontalAlignment="Left" Height="41" Margin="35,172,0,0" VerticalAlignment="Top" Width="320"/>
+        </Grid>
     </Grid>
 </Window>

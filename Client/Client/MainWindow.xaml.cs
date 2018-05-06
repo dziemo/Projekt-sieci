@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -21,6 +22,7 @@ namespace Client
     /// </summary>
     public partial class MainWindow : Window
     {
+        string textToSend = DateTime.Now.ToString();
         public MainWindow()
         {
             InitializeComponent();
@@ -28,29 +30,40 @@ namespace Client
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Dupa(adresIP.Text, port.Text);
+            Polacz(adresIP.Text, port.Text);
         }
+ 
 
-        public void Dupa(string SERVER_IP, string PORT_NO)
+
+        public void Polacz(string SERVER_IP, string PORT_NO)
         {
-            Status.Foreground = new SolidColorBrush(Colors.Green);
-            Status.Content = "Online";
-
-            string textToSend = DateTime.Now.ToString();
-
             TcpClient client = new TcpClient(SERVER_IP, Convert.ToInt32(PORT_NO));
             NetworkStream nwStream = client.GetStream();
-            byte[] bytesToSend = ASCIIEncoding.ASCII.GetBytes(textToSend);
+            var output = File.Create("result.txt");
 
-            Console.WriteLine("Sending : " + textToSend);
-            nwStream.Write(bytesToSend, 0, bytesToSend.Length);
+            var buffer = new byte[1024];
+            int bytesRead = 0;
+            var trash = new byte[8];
+            bytesRead = nwStream.Read(trash, 0, trash.Length);
+            while ((bytesRead = nwStream.Read(buffer, 0, buffer.Length)) > 0)
+            {
+                output.Write(buffer, 0, bytesRead);
+            }
 
-            byte[] bytesToRead = new byte[client.ReceiveBufferSize];
-            int bytesRead = nwStream.Read(bytesToRead, 0, client.ReceiveBufferSize);
-            Console.WriteLine("Recieved: " + Encoding.ASCII.GetString(bytesToRead, 0, bytesRead));
-            Wiadomosc.Content = Encoding.ASCII.GetString(bytesToRead, 0, bytesRead);
-            Console.ReadLine();
-            client.Close();
+            output.Close();
+            Bilety bilety = new Bilety();
+            bilety.Show();
+            this.Close();
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            textToSend = Text.Text;
+        }
+
+        private void adresIP_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }
