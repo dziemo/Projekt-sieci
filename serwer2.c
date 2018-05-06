@@ -68,14 +68,15 @@ printf("Potomny: blad przy wysylaniu pliku (child: file sending error)\n"); //er
 int main (void) {
   unsigned int port;
   char bufor[1024], wiadomosc[1024];
-  char * miasta[6] = {"Berlin","Warszawa","Madryt","Poznań","Londyn","Moskwa"};
+  char * miasta[20] = {"Berlin","Warszawa","Madryt","Poznań","Londyn","Moskwa","Zbąszynek","San Francisco", "Paryż", "Kraków", "Budapeszt", "Rzym", "Sztokholm", "Dublin", "Tallin", "Tokio", "Nowy Jork", "Lizbona", "Ateny", "Wilno"};
   int gniazdo, gniazdo2, iloscBiletow;
   struct sockaddr_in adr, nadawca;
   socklen_t dl = sizeof(struct sockaddr_in);
 
   size_t len = sizeof(miasta) / sizeof(miasta[0]);
-  printf("%lu\n", len);
-  iloscBiletow =10;
+
+  iloscBiletow = 30;
+
   FILE *f = fopen("bilety.txt", "w");
   if (f == NULL) {
     printf("%s\n", "Nieotwarto pliku");
@@ -86,20 +87,20 @@ int main (void) {
     int idmiasto2 = rand()%len;
     while(idmiasto==idmiasto2)
     {
-      idmiasto2 = miasta[rand()%len];
+      idmiasto2 = rand()%len;
     }
-    fprintf(f, "%s\n", miasta[idmiasto]);
-    fprintf(f, "%s\n", "#");
-    fprintf(f, "%s\n", miasta[idmiasto2]);
-    fprintf(f, "%s\n", "#");
-    fprintf(f, "%u.%u.%u %u:%u\n", rand()%29+1,rand()%11+1,2018,rand()%24,rand()%59);
-    fprintf(f, "%s\n", "#");
-    fprintf(f, "%u:%u\n", rand()%8,rand()%59);
-    fprintf(f, "%s\n", "#");
-    fprintf(f, "R: %u M: %u\n", rand()%16,rand()%8);
-    fprintf(f, "%s\n", "#");
-    fprintf(f, "%u\n", rand()%300+50);
-    fprintf(f, "%s\n", "#");
+    fprintf(f, "%s", miasta[idmiasto]);
+    fprintf(f, "%s", "#");
+    fprintf(f, "%s", miasta[idmiasto2]);
+    fprintf(f, "%s", "#");
+    fprintf(f, "%u.%u.%u %u:%u", rand()%29 + 1,rand()%11+1,2018,rand()%24,rand()%59);
+    fprintf(f, "%s", "#");
+    fprintf(f, "%u:%u", rand()%8,rand()%59);
+    fprintf(f, "%s", "#");
+    fprintf(f, "R: %u M: %u", rand()%15+1,rand()%8+1);
+    fprintf(f, "%s", "#");
+    fprintf(f, "%u", rand()%300+50);
+    fprintf(f, "%s", "#");
   }
   fclose(f);
 
