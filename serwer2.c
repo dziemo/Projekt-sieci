@@ -82,11 +82,17 @@ int main (void) {
     exit(1);
   }
   for (int i = 0; i < iloscBiletow; i++) {
-    fprintf(f, "%s\n", miasta[rand()%len]);
+    int idmiasto = rand()%len;
+    int idmiasto2 = rand()%len;
+    while(idmiasto==idmiasto2)
+    {
+      idmiasto2 = miasta[rand()%len];
+    }
+    fprintf(f, "%s\n", miasta[idmiasto]);
     fprintf(f, "%s\n", "#");
-    fprintf(f, "%s\n", miasta[rand()%len]);
+    fprintf(f, "%s\n", miasta[idmiasto2]);
     fprintf(f, "%s\n", "#");
-    fprintf(f, "%u.%u.%u %u:%u\n", rand()%30,rand()%12,2018,rand()%24,rand()%59);
+    fprintf(f, "%u.%u.%u %u:%u\n", rand()%29+1,rand()%11+1,2018,rand()%24,rand()%59);
     fprintf(f, "%s\n", "#");
     fprintf(f, "%u:%u\n", rand()%8,rand()%59);
     fprintf(f, "%s\n", "#");
