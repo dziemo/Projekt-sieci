@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.IO;
+using System.Net.Sockets;
 
 namespace Client
 {
@@ -20,8 +21,10 @@ namespace Client
     /// </summary>
     public partial class Bilety : Window
     {
-        public Bilety()
+        public TcpClient client;
+        public Bilety(TcpClient c)
         {
+            client = c;
             InitializeComponent();
             ZaladujBilety();
         }
@@ -33,7 +36,7 @@ namespace Client
             string[] wyrazy = line.Split('#');
             for (int i = 0; i < wyrazy.Length / 6; i++)
             {
-                BiletPanel bp = new BiletPanel();
+                BiletPanel bp = new BiletPanel(client);
                 bp.skad.Content = wyrazy[(i*6)];
                 bp.dokad.Content = wyrazy[(i * 6) + 1];
                 bp.wylot.Content = "Data: " + wyrazy[(i * 6) + 2];

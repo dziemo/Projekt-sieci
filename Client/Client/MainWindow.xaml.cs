@@ -22,7 +22,7 @@ namespace Client
     /// </summary>
     public partial class MainWindow : Window
     {
-        string textToSend = DateTime.Now.ToString();
+        public TcpClient client;
         public MainWindow()
         {
             InitializeComponent();
@@ -37,33 +37,30 @@ namespace Client
 
         public void Polacz(string SERVER_IP, string PORT_NO)
         {
-            TcpClient client = new TcpClient(SERVER_IP, Convert.ToInt32(PORT_NO));
+            client = new TcpClient(SERVER_IP, Convert.ToInt32(PORT_NO));
             NetworkStream nwStream = client.GetStream();
             var output = File.Create("result.txt");
-
+            
             var buffer = new byte[1024];
             int bytesRead = 0;
-            var trash = new byte[8];
-            bytesRead = nwStream.Read(trash, 0, trash.Length);
-            while ((bytesRead = nwStream.Read(buffer, 0, buffer.Length)) > 0)
+            var filesize = new byte[8];
+            nwStream.Read(filesize, 0, filesize.Length);
+            while ((bytesRead = nwStream.Read(buffer, 0, buffer.Length)) > 100)
             {
                 output.Write(buffer, 0, bytesRead);
             }
 
             output.Close();
-            Bilety bilety = new Bilety();
+            Bilety bilety = new Bilety(client);
             bilety.Show();
-            this.Close();
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            textToSend = Text.Text;
         }
 
         private void adresIP_TextChanged(object sender, TextChangedEventArgs e)
         {
+        }
 
+        private void port_TextChanged(object sender, TextChangedEventArgs e)
+        {
         }
     }
 }

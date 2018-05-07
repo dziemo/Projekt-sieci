@@ -13,7 +13,7 @@
         <Label x:Name="dlugoscLotu" Content="Dl Lotu" HorizontalAlignment="Left" Height="30" Margin="151,38,0,0" VerticalAlignment="Top" Width="91" Background="#FFEEEEEE" BorderBrush="#FF23234B" BorderThickness="1"/>
         <Label x:Name="miejsce" Content="Miejsce" HorizontalAlignment="Left" Height="30" Margin="247,5,0,0" VerticalAlignment="Top" Width="115" Background="#FFEEEEEE" BorderBrush="#FF23234B" BorderThickness="1"/>
         <Label x:Name="cena" Content="Cena" HorizontalAlignment="Left" Height="30" Margin="247,38,0,0" VerticalAlignment="Top" Width="115" Background="#FFEEEEEE" BorderBrush="#FF23234B" BorderThickness="1"/>
-        <Button x:Name="Zarezerwuj" Content="Zarezerwuj" HorizontalAlignment="Left" Height="63" Margin="368,5,0,0" VerticalAlignment="Top" Width="73"/>
+        <Button x:Name="Zarezerwuj" Content="Zarezerwuj" HorizontalAlignment="Left" Height="63" Margin="368,5,0,0" VerticalAlignment="Top" Width="73" Click="Zarezerwuj_Click"/>
 
     </Grid>
 </UserControl>

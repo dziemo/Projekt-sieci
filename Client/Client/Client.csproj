@@ -62,6 +62,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DaneUzytkownika.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -75,6 +79,9 @@
     </Compile>
     <Compile Include="Bilety.xaml.cs">
       <DependentUpon>Bilety.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DaneUzytkownika.xaml.cs">
+      <DependentUpon>DaneUzytkownika.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

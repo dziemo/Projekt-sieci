@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,9 +22,18 @@ namespace Client
     /// </summary>
     public partial class BiletPanel : UserControl
     {
-        public BiletPanel()
+        TcpClient client;
+        public BiletPanel(TcpClient c)
         {
             InitializeComponent();
+            client = c;
         }
+
+        private void Zarezerwuj_Click(object sender, RoutedEventArgs e)
+        {
+            DaneUzytkownika nwDane = new DaneUzytkownika(client);
+            nwDane.Show();
+        }
+
     }
 }
