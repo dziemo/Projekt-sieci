@@ -31,7 +31,7 @@ namespace Client
 
         private void Zarezerwuj_Click(object sender, RoutedEventArgs e)
         {
-            DaneUzytkownika nwDane = new DaneUzytkownika(client);
+            DaneUzytkownika nwDane = new DaneUzytkownika(client, skad.Content.ToString(), dokad.Content.ToString(), wylot.Content.ToString(), dlugoscLotu.Content.ToString(), miejsce.Content.ToString(), cena.Content.ToString());
             nwDane.Show();
         }
 

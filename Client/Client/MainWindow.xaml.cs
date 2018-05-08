@@ -45,6 +45,7 @@ namespace Client
             int bytesRead = 0;
             var filesize = new byte[8];
             nwStream.Read(filesize, 0, filesize.Length);
+            long fs = BitConverter.ToInt64(filesize,0);
             while ((bytesRead = nwStream.Read(buffer, 0, buffer.Length)) > 100)
             {
                 output.Write(buffer, 0, bytesRead);
@@ -53,6 +54,7 @@ namespace Client
             output.Close();
             Bilety bilety = new Bilety(client);
             bilety.Show();
+            Close();
         }
 
         private void adresIP_TextChanged(object sender, TextChangedEventArgs e)

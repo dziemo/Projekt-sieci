@@ -21,16 +21,23 @@ namespace Client
     /// </summary>
     public partial class DaneUzytkownika : Window
     {
+        string[] dane = new string[6];
         TcpClient client;
-        public DaneUzytkownika(TcpClient c)
+        public DaneUzytkownika(TcpClient c, string wylot, string przylot, string data, string dlgLotu, string miejsce, string cena)
         {
             client = c;
             InitializeComponent();
+            dane[0] = wylot;
+            dane[1] = przylot;
+            dane[2] = data;
+            dane[3] = dlgLotu;
+            dane[4] = miejsce;
+            dane[5] = cena;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            File.WriteAllText("dane.txt",imie.Text + '\n' + nazwisko.Text + '\n' + email.Text + '\n' + telefon.Text);
+            File.WriteAllText("dane.txt","Imie: " + imie.Text + '\n' + "Nazwisko: " + nazwisko.Text + '\n' + "Adres email: " + email.Text + '\n' + "Telefon: " + telefon.Text + '\n' + "Miejsce wylotu: " + dane[0] + '\n' + "Miejsce przylotu: " + dane[1] + '\n' + dane[2] + '\n' + dane[3] + '\n' + dane[4] + '\n' + dane[5]);
             var f = File.Open("dane.txt", FileMode.Open);
             NetworkStream stream = client.GetStream();
             var buffer = new byte[1024];
@@ -40,6 +47,7 @@ namespace Client
                 stream.Write(buffer, 0, buffer.Length);
             }
             f.Close();
+            Close();
         }
     }
 }

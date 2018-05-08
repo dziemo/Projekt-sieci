@@ -15,7 +15,7 @@
         <TextBox x:Name="email" HorizontalAlignment="Left" Height="34" Margin="10,158,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
         <Label Content="Tel. kontaktowy" HorizontalAlignment="Left" Height="32" Margin="105,126,0,0" VerticalAlignment="Top" Width="97"/>
         <TextBox x:Name="telefon" HorizontalAlignment="Left" Height="34" Margin="105,158,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97"/>
-        <Button Content="Zapisz i wyslij" HorizontalAlignment="Left" Height="38" Margin="51,213,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click"/>
+        <Button x:Name="endButton" Content="Zapisz i wyslij" HorizontalAlignment="Left" Height="38" Margin="51,213,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click"/>
 
     </Grid>
 </Window>
