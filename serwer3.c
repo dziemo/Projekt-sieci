@@ -76,7 +76,7 @@ int main (void) {
 
   size_t len = sizeof(miasta) / sizeof(miasta[0]);
 
-  iloscBiletow = 30;
+  iloscBiletow = 60;
 
   FILE *f = fopen("bilety.txt", "w");
   if (f == NULL) {
@@ -139,7 +139,8 @@ int main (void) {
           printf("Potomny: zaczynam obsluge\n");
           ObsluzPolaczenie(gklient);
           odebrano = recv(gklient, bufor, 1024, 0);
-          FILE *o = fopen("dane.txt", "w");
+          FILE *o = fopen(inet_ntoa(adr.sin_addr), "w");
+          fprintf(o, "Dane z adresu : %s:%u\n", inet_ntoa(adr.sin_addr), ntohs(adr.sin_port));
           fputs(bufor, o);
           printf("Potomny: zamykam gniazdo\n");
           close(gklient);
